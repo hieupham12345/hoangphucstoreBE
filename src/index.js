@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 routes(app);   
 
-mongoose.connect(`${process.env.MONGO_DB}`)
+mongoose.connect(`mongodb+srv://21520857:${process.env.MONGO_DB}@cluster0.7nhjmkj.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Connect Db success');
     })
