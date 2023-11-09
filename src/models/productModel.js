@@ -12,7 +12,8 @@ const productSchema = new mongoose.Schema (
         sizes: [{
                 size: { type: String},
                 quantity: { type: Number}
-            }]    
+            }],
+        description: {type: String}, 
     },
     {
         timestamps: true

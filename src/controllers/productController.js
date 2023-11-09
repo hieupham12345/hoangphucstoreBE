@@ -2,12 +2,36 @@ const productService = require('../services/productService')
 
 const createProduct = async (req, res) => {
     try {
-        const {name, category, brand, sex, price, salePrice, imgUrls, sizes } = req.body
-        if (!name  || !category || !brand || !sex || !price || !salePrice || !imgUrls || !sizes ) {
-            return res.status(200).json({
-                status: 'ERR',
-                message: 'The input is required'
-            })
+        const {name, category, brand, sex, price, salePrice, imgUrls, sizes, description } = req.body
+        if (!name  || !category || !brand || !sex || !price || !salePrice ) {
+            
+            const missingFields = [];
+
+            if (!name) {
+                missingFields.push('name');
+            }
+            if (!category) {
+                missingFields.push('category');
+            }
+            if (!brand) {
+                missingFields.push('brand');
+            }
+            if (!sex) {
+                missingFields.push('sex');
+            }
+            if (!price) {
+                missingFields.push('price');
+            }
+            if (!salePrice) {
+                missingFields.push('salePrice');
+            }
+
+            if (missingFields.length > 0) {
+                return res.status(200).json({
+                    status: 'ERR',
+                    message: `The following input fields are required: ${missingFields.join(', ')}`
+                });
+            }
         }
         const response = await productService.createProduct(req.body)
         return res.status(200).json(response)
