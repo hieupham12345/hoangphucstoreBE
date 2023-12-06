@@ -9,6 +9,13 @@ const userSchema = new mongoose.Schema(
         isAdmin: {type: Boolean, default: false, required: true},
         access_token: {type: String, require: true},
         refesh_token: {type: String, require: true},
+        address_list: [{
+            fullName: {type: String, required: true},
+            gender: {type: String},
+            phoneNumber: {type: String, required: true},
+            address: {type: String, required: true},
+            isDefault: {type: Boolean, required: true}
+        }]
     },
     {
         timestamps: true
